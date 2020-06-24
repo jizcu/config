@@ -1,0 +1,85 @@
+conky.config = {
+	background =  true,
+	update_interval = 1,
+	double_buffer = true,
+	no_buffers = false,
+
+	own_window = true,
+	own_window_type = 'panel',
+	own_window_colour = '0b0d05',
+	own_window_argb_visual = true,
+	own_window_argb_value = 230,
+	own_window_transparent = false,
+	maximum_width = 200,
+
+	alignment = 'top_right',
+	gap_x = 20,
+	gap_y = 0,
+
+	border_inner_margin = 20,
+	border_outer_margin = 0,
+
+	draw_shades = true,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = true,
+	show_graph_scale = true,
+	show_graph_range = false,
+
+	use_xft = true,
+	xftalpha = 0,
+	default_color = 'd9ddbe',
+
+	color1 = '#c3b475', 
+	color2 = '#76880d',
+	color4 = '#6c8d23',
+};
+
+conky.text = [[
+
+${color1}${font VictorMono:semibold:size=9}${time %H:%M:%S}${color2}${alignr}${battery_bar 7,22} ${battery_percent}%${font}
+${hr}
+${color1}${voffset 10}${alignc}${font VictorMono:semibold:size=9}${time %A} ${time %B} ${time %d}, ${time %Y}
+${color1}${voffset 8}${font Monospace:bold:size=6}   
+         |\---/|
+         | ,_, |
+          \_`_/-..----.
+       ___/ `   ' ,""+ \  
+      (__...'   __\     |`.___.';
+        (_,...'(_,.`__)/'.....+ 
+${font}
+${font VictorMono:semibold:size=9}
+${color1}OS:${alignr}${distribution} ${execi 86400 lsb_release -sv} ${machine}
+${color1}Kernel: ${alignr}${kernel}
+${color1}Uptime: ${alignr}${uptime}
+
+${color2}SYSTEM
+${hr 1}
+${color1}${voffset 2}CPU: ${alignr}${cpu cpu0}%
+${color4}${voffset 2}${cpugraph cpu0 35,200 a09130 324406 0.25 -l}
+${color1}RAM${alignr}$mem / $memmax
+${color4}${voffset 2}${membar 14,200}
+
+${color1}ROOT ${alignr}$fs_used / $fs_size
+${color4}${voffset 2}${fs_bar 14,200}
+
+${color1}HOME ${alignr}${fs_free /home}
+${color4}${voffset 2}${fs_bar 14,200 /home}
+
+${color2}PROCESSES
+${hr 1}
+${color1}${voffset 2}Total Processes${alignr}$processes
+
+${color1}${top_mem name 1}${alignr}${top mem 1}%
+${color1}${top_mem name 2}${alignr}${top mem 2}%
+${color1}${top_mem name 3}${alignr}${top mem 3}%
+${color1}${top_mem name 4}${alignr}${top mem 4}%
+${color1}${top_mem name 5}${alignr}${top mem 5}%
+
+${color2}NETWORK
+${hr 1}
+${color1}${voffset 2}Download ${offset 52}Upload
+${downspeedf eth0} kbps ${offset 52}${upspeedf wlan0} kbps
+${color4}${downspeedgraph 20,85 a09130 324406 0.15 -l}${alignr}${upspeedgraph 20,85 a09130 324406 0.15 -l}
+${color1}Local IP${alignr}${addr wlp2s0}
+]]
